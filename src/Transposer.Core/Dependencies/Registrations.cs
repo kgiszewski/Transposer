@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Transposer.Core.Keys;
+using Transposer.Core.Notes;
 
 namespace Transposer.Core.Dependencies
 {
@@ -8,6 +9,7 @@ namespace Transposer.Core.Dependencies
         public static void Register(IServiceCollection container)
         {
             container.AddTransient<IGenerateKeys, KeyGenerator>();
+            container.AddSingleton<AllPitches>();
         }
     }
 }

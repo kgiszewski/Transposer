@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Transposer.Core.Dependencies;
+using Transposer.Core.Enums;
 using Transposer.Core.Keys;
+using Transposer.Core.Notes;
 
 namespace Transposer.Tests
 {
@@ -26,7 +29,117 @@ namespace Transposer.Tests
         {
             var sut = _serviceProvider.GetService<IGenerateKeys>();
 
+            var result = sut.Generate(new C(), Mode.Ionian);
 
+            var expectedResult = new List<INote>
+            {
+                new C(),
+                new D(),
+                new E(),
+                new F(),
+                new G(),
+                new A(),
+                new B(),
+                new C()
+            };
+
+            Assert.AreEqual(expectedResult, result);
+
+            result = sut.Generate(new C(), Mode.Dorian);
+
+            expectedResult = new List<INote>
+            {
+                new D(),
+                new E(),
+                new F(),
+                new G(),
+                new A(),
+                new B(),
+                new C(),
+                new D()
+            };
+
+            Assert.AreEqual(expectedResult, result);
+
+            result = sut.Generate(new C(), Mode.Phrygian);
+
+            expectedResult = new List<INote>
+            {
+                new E(),
+                new F(),
+                new G(),
+                new A(),
+                new B(),
+                new C(),
+                new D(),
+                new E()
+            };
+
+            Assert.AreEqual(expectedResult, result);
+
+            result = sut.Generate(new C(), Mode.Lydian);
+
+            expectedResult = new List<INote>
+            {
+                new F(),
+                new G(),
+                new A(),
+                new B(),
+                new C(),
+                new D(),
+                new E(),
+                new F()
+            };
+
+            Assert.AreEqual(expectedResult, result);
+
+            result = sut.Generate(new C(), Mode.Mixolydian);
+
+            expectedResult = new List<INote>
+            {
+                new G(),
+                new A(),
+                new B(),
+                new C(),
+                new D(),
+                new E(),
+                new F(),
+                new G()
+            };
+
+            Assert.AreEqual(expectedResult, result);
+
+            result = sut.Generate(new C(), Mode.Aeolian);
+
+            expectedResult = new List<INote>
+            {
+                new A(),
+                new B(),
+                new C(),
+                new D(),
+                new E(),
+                new F(),
+                new G(),
+                new A()
+            };
+
+            Assert.AreEqual(expectedResult, result);
+
+            result = sut.Generate(new C(), Mode.Locrian);
+
+            expectedResult = new List<INote>
+            {
+                new B(),
+                new C(),
+                new D(),
+                new E(),
+                new F(),
+                new G(),
+                new A(),
+                new B()
+            };
+
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }
