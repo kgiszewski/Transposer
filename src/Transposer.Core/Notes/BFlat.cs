@@ -1,6 +1,6 @@
 ﻿namespace Transposer.Core.Notes
 {
-    public class BFlat : INote
+    public struct BFlat : INote
     {
         public string Name => "Bb";
         public string AlternateName => "Bb";

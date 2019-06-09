@@ -9,6 +9,7 @@ namespace Transposer.Core.Dependencies
         public static void Register(IServiceCollection container)
         {
             container.AddTransient<IGenerateKeys, KeyGenerator>();
+            container.AddTransient<ITransposeKeys, KeyTransposer>();
             container.AddSingleton<AllPitches>();
         }
     }
