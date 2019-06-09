@@ -53,17 +53,7 @@ namespace Transposer.Tests
             result = sut.Transpose(sourceScale, new FSharp());
 
             //F♯, G♯, A♯, B, C♯, D♯, and E♯
-            expectedResult = new List<INote>
-            {
-                new FSharp(),
-                new GSharp(),
-                new BFlat(),
-                new B(),
-                new CSharp(),
-                new EFlat(),
-                new F(),
-                new FSharp()
-            };
+            expectedResult = sut.Transpose(sourceScale, new FSharp()).ToList();
 
             Assert.AreEqual(expectedResult.ToList(), result.ToList());
         }
