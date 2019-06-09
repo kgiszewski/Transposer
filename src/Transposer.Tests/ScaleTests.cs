@@ -4,13 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Transposer.Core.Dependencies;
 using Transposer.Core.Enums;
-using Transposer.Core.Keys;
 using Transposer.Core.Notes;
+using Transposer.Core.Scales;
 
 namespace Transposer.Tests
 {
     [TestFixture]
-    public class KeyTests
+    public class ScaleTests
     {
         private IServiceProvider _serviceProvider;
 
@@ -25,9 +25,9 @@ namespace Transposer.Tests
         }
 
         [Test]
-        public void Can_Generate_Key()
+        public void Can_Generate_Scale()
         {
-            var sut = _serviceProvider.GetService<IGenerateKeys>();
+            var sut = _serviceProvider.GetService<IGenerateScales>();
 
             var result = sut.Generate(new C(), Mode.Ionian);
 

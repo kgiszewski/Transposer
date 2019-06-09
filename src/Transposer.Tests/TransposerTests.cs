@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Transposer.Core.Dependencies;
-using Transposer.Core.Keys;
 using Transposer.Core.Notes;
+using Transposer.Core.Scales;
 
 namespace Transposer.Tests
 {
@@ -25,15 +25,15 @@ namespace Transposer.Tests
         }
 
         [Test]
-        public void Can_Transpose_Key()
+        public void Can_Transpose_Scale()
         {
-            var keyGenerator = _serviceProvider.GetService<IGenerateKeys>();
+            var scaleGenerator = _serviceProvider.GetService<IGenerateScales>();
 
-            var sourceKey = keyGenerator.Generate(new C()).ToList();
+            var sourceScale = scaleGenerator.Generate(new C()).ToList();
 
-            var sut = _serviceProvider.GetService<ITransposeKeys>();
+            var sut = _serviceProvider.GetService<ITransposeScales>();
 
-            var result = sut.Transpose(sourceKey, new A());
+            var result = sut.Transpose(sourceScale, new A());
 
             //A – B – C# – D – E – F# – G# – A
             var expectedResult = new List<INote>
@@ -50,7 +50,7 @@ namespace Transposer.Tests
 
             Assert.AreEqual(expectedResult, result);
 
-            result = sut.Transpose(sourceKey, new FSharp());
+            result = sut.Transpose(sourceScale, new FSharp());
 
             //F♯, G♯, A♯, B, C♯, D♯, and E♯
             expectedResult = new List<INote>

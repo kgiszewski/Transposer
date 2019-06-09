@@ -2,9 +2,9 @@
 using Transposer.Core.Enums;
 using Transposer.Core.Notes;
 
-namespace Transposer.Core.Keys
+namespace Transposer.Core.Scales
 {
-    public interface IGenerateKeys
+    public interface IGenerateScales
     {
         IEnumerable<INote> Generate(INote rootNote, Mode mode = Mode.Ionian);
     }

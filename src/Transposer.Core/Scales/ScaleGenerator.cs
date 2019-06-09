@@ -3,13 +3,13 @@ using System.Linq;
 using Transposer.Core.Enums;
 using Transposer.Core.Notes;
 
-namespace Transposer.Core.Keys
+namespace Transposer.Core.Scales
 {
-    public class KeyGenerator : IGenerateKeys
+    public class ScaleGenerator : IGenerateScales
     {
         private readonly AllPitches _allPitches;
 
-        public KeyGenerator(
+        public ScaleGenerator(
             AllPitches allPitches    
         )
         {
@@ -58,18 +58,18 @@ namespace Transposer.Core.Keys
             return _shift(major, (int) mode);
         }
 
-        private IEnumerable<INote> _shift(IList<INote> majorKey, int shiftBy)
+        private IEnumerable<INote> _shift(IList<INote> majorScale, int shiftBy)
         {
             for (var i = 0; i < shiftBy; i++)
             {
-                var valueToMove = majorKey.ElementAt(1);
+                var valueToMove = majorScale.ElementAt(1);
 
-                majorKey.RemoveAt(0);
+                majorScale.RemoveAt(0);
 
-                majorKey.Add(valueToMove);
+                majorScale.Add(valueToMove);
             }
 
-            return majorKey;
+            return majorScale;
         }
     }
 }

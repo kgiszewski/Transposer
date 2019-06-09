@@ -2,28 +2,28 @@
 using System.Linq;
 using Transposer.Core.Notes;
 
-namespace Transposer.Core.Keys
+namespace Transposer.Core.Scales
 {
-    public class KeyTransposer : ITransposeKeys
+    public class ScaleTransposer : ITransposeScales
     {
         private readonly AllPitches _allPitches;
 
-        public KeyTransposer(
+        public ScaleTransposer(
             AllPitches allPitches    
         )
         {
             _allPitches = allPitches;
         }
 
-        public IEnumerable<INote> Transpose(IList<INote> sourceKey, INote targetKey)
+        public IEnumerable<INote> Transpose(IList<INote> sourceScale, INote targetKey)
         {
             var allPitches = _allPitches.Notes;
 
-            var rootNote = sourceKey.First();
+            var rootNote = sourceScale.First();
 
             if (rootNote == targetKey)
             {
-                return sourceKey;
+                return sourceScale;
             }
 
             var indexOfSourceNote = allPitches.IndexOf(rootNote);
@@ -34,7 +34,7 @@ namespace Transposer.Core.Keys
 
             var result = new List<INote>();
 
-            foreach (var note in sourceKey)
+            foreach (var note in sourceScale)
             {
                 var indexOfNote = allPitches.IndexOf(note);
 
